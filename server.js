@@ -15,6 +15,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname));
 
 // Database setup
 let db;
@@ -63,12 +64,12 @@ async function initDB() {
 
   // Update room image URLs to local SVG files so images NEVER fail to load
   const sampleRooms = [
-    { num: 'Kamar 101', type: 'VIP', price: 1500000, fac: 'AC, Kamar Mandi Dalam, Springbed, Lemari, WiFi 100Mbps, Smart TV', status: 'Tersedia', img: '/img/kamar-101.svg' },
-    { num: 'Kamar 102', type: 'VIP', price: 1500000, fac: 'AC, Kamar Mandi Dalam, Water Heater, Meja Kerja, WiFi, Springbed', status: 'Terisi', img: '/img/kamar-102.svg' },
-    { num: 'Kamar 201', type: 'Reguler', price: 850000, fac: 'Kipas Angin, Kamar Mandi Dalam, Kasur Nyaman, Lemari, WiFi', status: 'Tersedia', img: '/img/kamar-201.svg' },
-    { num: 'Kamar 202', type: 'Reguler', price: 750000, fac: 'Kipas Angin, Kamar Mandi Luar Bersih, Kasur, Lemari, Dapur Bersama', status: 'Tersedia', img: '/img/kamar-202.svg' },
-    { num: 'Kamar 203', type: 'Reguler', price: 850000, fac: 'Kipas Angin, Kamar Mandi Dalam, Kasur, Lemari, WiFi Cepat', status: 'Terisi', img: '/img/kamar-203.svg' },
-    { num: 'Kamar 301', type: 'VIP', price: 1650000, fac: 'AC Dingin, Balkon Pribadi, Kamar Mandi Dalam, Kulkas Mini, WiFi', status: 'Tersedia', img: '/img/kamar-301.svg' }
+    { num: 'Kamar 101', type: 'VIP', price: 1500000, fac: 'AC, Kamar Mandi Dalam, Springbed, Lemari, WiFi 100Mbps, Smart TV', status: 'Tersedia', img: 'img/kamar-101.svg' },
+    { num: 'Kamar 102', type: 'VIP', price: 1500000, fac: 'AC, Kamar Mandi Dalam, Water Heater, Meja Kerja, WiFi, Springbed', status: 'Terisi', img: 'img/kamar-102.svg' },
+    { num: 'Kamar 201', type: 'Reguler', price: 850000, fac: 'Kipas Angin, Kamar Mandi Dalam, Kasur Nyaman, Lemari, WiFi', status: 'Tersedia', img: 'img/kamar-201.svg' },
+    { num: 'Kamar 202', type: 'Reguler', price: 750000, fac: 'Kipas Angin, Kamar Mandi Luar Bersih, Kasur, Lemari, Dapur Bersama', status: 'Tersedia', img: 'img/kamar-202.svg' },
+    { num: 'Kamar 203', type: 'Reguler', price: 850000, fac: 'Kipas Angin, Kamar Mandi Dalam, Kasur, Lemari, WiFi Cepat', status: 'Terisi', img: 'img/kamar-203.svg' },
+    { num: 'Kamar 301', type: 'VIP', price: 1650000, fac: 'AC Dingin, Balkon Pribadi, Kamar Mandi Dalam, Kulkas Mini, WiFi', status: 'Tersedia', img: 'img/kamar-301.svg' }
   ];
 
   for (const r of sampleRooms) {

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad301" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4c1d95"/>
+      <stop offset="100%" stop-color="#2e1065"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bgGrad301)"/>
+  <polygon points="0,380 800,380 800,500 0,500" fill="#1e1b4b"/>
+  
+  <!-- Sliding Glass Balcony Door -->
+  <rect x="70" y="70" width="200" height="280" rx="4" fill="#a78bfa" opacity="0.3" stroke="#c4b5fd" stroke-width="4"/>
+  <line x1="170" y1="70" x2="170" y2="350" stroke="#c4b5fd" stroke-width="4"/>
+  <rect x="155" y="190" width="8" height="40" rx="2" fill="#ffffff"/>
+  <text x="170" y="380" font-family="sans-serif" font-size="12" font-weight="700" fill="#ddd6fe" text-anchor="middle">BALKON PRIBADI</text>
+
+  <!-- AC Unit & Mini Fridge -->
+  <rect x="520" y="50" width="200" height="50" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <line x1="535" y1="80" x2="705" y2="80" stroke="#94a3b8" stroke-width="2"/>
+  <circle cx="700" cy="65" r="3" fill="#10b981"/>
+
+  <rect x="330" y="240" width="100" height="140" rx="6" fill="#e2e8f0" stroke="#94a3b8" stroke-width="3"/>
+  <rect x="340" y="255" width="80" height="40" rx="4" fill="#cbd5e1"/>
+  <circle cx="345" cy="310" r="3" fill="#64748b"/>
+  <text x="380" y="350" font-family="sans-serif" font-size="11" font-weight="700" fill="#64748b" text-anchor="middle">KULKAS MINI</text>
+
+  <!-- King Size Bed -->
+  <rect x="490" y="250" width="260" height="160" rx="12" fill="#f5f3ff"/>
+  <rect x="490" y="215" width="260" height="45" rx="6" fill="#6d28d9"/>
+  <rect x="515" y="235" width="90" height="35" rx="6" fill="#ffffff" stroke="#ddd6fe" stroke-width="1"/>
+  <rect x="635" y="235" width="90" height="35" rx="6" fill="#ffffff" stroke="#ddd6fe" stroke-width="1"/>
+  <rect x="490" y="315" width="260" height="95" rx="6" fill="#7c3aed"/>
+
+  <!-- Badge Label -->
+  <rect x="40" y="420" width="220" height="44" rx="8" fill="#7c3aed"/>
+  <text x="150" y="447" font-family="sans-serif" font-size="16" font-weight="800" fill="#ffffff" text-anchor="middle">KAMAR 301 - VIP</text>
+</svg>

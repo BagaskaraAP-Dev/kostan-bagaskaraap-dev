@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad202" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bgGrad202)"/>
+  <polygon points="0,380 800,380 800,500 0,500" fill="#334155"/>
+  
+  <!-- Window with Curtains -->
+  <rect x="80" y="80" width="160" height="220" rx="4" fill="#38bdf8" opacity="0.8"/>
+  <rect x="70" y="70" width="30" height="240" fill="#0284c7"/>
+  <rect x="220" y="70" width="30" height="240" fill="#0284c7"/>
+  
+  <!-- Study Desk -->
+  <rect x="300" y="270" width="150" height="110" rx="4" fill="#475569"/>
+  <rect x="330" y="220" width="90" height="60" rx="4" fill="#1e293b" stroke="#cbd5e1" stroke-width="2"/>
+  <circle cx="375" cy="250" r="12" fill="#38bdf8"/>
+  <text x="375" y="300" font-family="sans-serif" font-size="11" font-weight="600" fill="#cbd5e1" text-anchor="middle">MEJA BELAJAR</text>
+
+  <!-- Bed (Single) -->
+  <rect x="520" y="270" width="230" height="140" rx="8" fill="#f8fafc"/>
+  <rect x="520" y="240" width="230" height="35" rx="4" fill="#0284c7"/>
+  <rect x="540" y="255" width="85" height="30" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="520" y="325" width="230" height="85" rx="4" fill="#0369a1"/>
+
+  <!-- Badge Label -->
+  <rect x="40" y="420" width="240" height="44" rx="8" fill="#0284c7"/>
+  <text x="160" y="447" font-family="sans-serif" font-size="16" font-weight="800" fill="#ffffff" text-anchor="middle">KAMAR 202 - REGULER</text>
+</svg>

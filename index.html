@@ -2,13 +2,167 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=public/">
-  <title>Kostan BagaskaraAP-Dev</title>
-  <script>
-    window.location.replace("public/");
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kostan BagaskaraAP-Dev - Sistem Manajemen dan Reservasi Kamar</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <p>Mengalihkan ke sistem... <a href="public/">Klik di sini jika tidak beralih otomatis</a>.</p>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">B</div>
+        <span>Kostan BagaskaraAP-Dev</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#katalog" class="active">Daftar Kamar</a>
+        <a href="#pengaduan">Layanan Kendala</a>
+        <a href="admin.html" class="btn btn-outline" style="padding: 8px 16px;">Panel Pengelola</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Kostan BagaskaraAP-Dev</h1>
+      <p>Sistem informasi ketersediaan kamar, pengecekan spesifikasi fasilitas, dan reservasi unit secara langsung.</p>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <section class="container" id="katalog">
+    <div class="filter-bar">
+      <div class="filter-group">
+        <span style="font-weight: 700; font-size: 0.9rem; color: var(--gray);">Tipe Unit:</span>
+        <button class="filter-chip active" data-type="Semua">Semua</button>
+        <button class="filter-chip" data-type="VIP">VIP</button>
+        <button class="filter-chip" data-type="Reguler">Reguler</button>
+      </div>
+
+      <div class="filter-group">
+        <span style="font-weight: 700; font-size: 0.9rem; color: var(--gray);">Status:</span>
+        <button class="filter-chip active" data-status="Semua">Semua</button>
+        <button class="filter-chip" data-status="Tersedia">Hanya Tersedia</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rooms Grid -->
+  <section class="rooms-section">
+    <div class="container">
+      <div class="room-grid" id="rooms-container">
+        <div style="text-align: center; grid-column: 1/-1; padding: 40px; color: var(--gray);">
+          Memuat daftar unit kamar...
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Layanan Pengaduan Fasilitas -->
+  <section class="complaint-section" id="pengaduan">
+    <div class="container">
+      <div class="complaint-card">
+        <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; color: var(--dark);">Formulir Pengaduan Fasilitas</h2>
+        <p style="color: var(--gray); font-size: 0.95rem; margin-bottom: 24px;">Gunakan formulir ini untuk melaporkan gangguan listrik, air, jaringan internet, atau fasilitas kamar kepada pihak pengelola.</p>
+
+        <form id="complaint-form">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">Nama Penghuni</label>
+              <input type="text" class="form-control" id="c-name" required placeholder="Nama lengkap Anda">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Nomor Kamar</label>
+              <input type="text" class="form-control" id="c-room" required placeholder="Contoh: Kamar 102">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Kategori Gangguan</label>
+            <select class="form-control" id="c-category">
+              <option value="Listrik">Listrik dan Penerangan</option>
+              <option value="Air">Air Bersih dan Pipa</option>
+              <option value="Fasilitas Kamar">Fasilitas Kamar (Pintu, Kasur, Kunci)</option>
+              <option value="WiFi dan Internet">Jaringan Internet / WiFi</option>
+              <option value="Kebersihan">Kebersihan Lingkungan</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Deskripsi Kendala</label>
+            <textarea class="form-control" id="c-desc" rows="3" required placeholder="Jelaskan detail kendala yang dialami secara singkat dan jelas..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px;">Kirim Pengaduan</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Modal -->
+  <div class="modal-overlay" id="booking-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Formulir Reservasi Kamar</h3>
+        <button class="modal-close" id="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="modal-room-details" style="background: #f8fafc; padding: 12px; border-radius: 8px; margin-bottom: 18px; font-size: 0.9rem;"></div>
+        
+        <form id="booking-form">
+          <input type="hidden" id="book-room-id">
+          
+          <div class="form-group">
+            <label class="form-label">Nama Lengkap Penyewa</label>
+            <input type="text" class="form-control" id="book-name" required placeholder="Nama lengkap sesuai KTP">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Nomor Kontak / WhatsApp</label>
+            <input type="tel" class="form-control" id="book-phone" required placeholder="08xxxxxxxxxx">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label">Tanggal Mulai Menempati</label>
+              <input type="date" class="form-control" id="book-date" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Durasi Sewa</label>
+              <select class="form-control" id="book-duration">
+                <option value="1">1 Bulan</option>
+                <option value="3">3 Bulan</option>
+                <option value="6">6 Bulan</option>
+                <option value="12">1 Tahun</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="background: var(--primary-light); padding: 14px; border-radius: 8px; margin: 16px 0; text-align: center;">
+            <span style="font-size: 0.85rem; color: var(--primary); font-weight: 600;">Total Biaya Sewa:</span>
+            <div id="book-total-display" style="font-size: 1.4rem; font-weight: 800; color: var(--primary); margin-top: 4px;">Rp 0</div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">Konfirmasi Reservasi</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Kostan BagaskaraAP-Dev. Sistem Manajemen Kost Terpadu.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
 </body>
 </html>

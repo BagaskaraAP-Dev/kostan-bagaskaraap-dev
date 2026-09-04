@@ -1,5 +1,9 @@
 # Kostan BagaskaraAP-Dev - Sistem Manajemen & Reservasi Kamar
 
+[![CI](https://github.com/BagaskaraAP-Dev/kostan-bagaskaraap-dev/actions/workflows/ci.yml/badge.svg)](https://github.com/BagaskaraAP-Dev/kostan-bagaskaraap-dev/actions/workflows/ci.yml)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-success)](https://bagaskaraap-dev.github.io/kostan-bagaskaraap-dev/)
+[![Status](https://img.shields.io/badge/status-active-brightgreen)](https://github.com/BagaskaraAP-Dev/kostan-bagaskaraap-dev)
+
 Aplikasi Web Full-Stack modern untuk pengelolaan unit kamar kost, reservasi kamar, pencatatan pembayaran sewa, dan penanganan laporan kendala fasilitas penghuni.
 
 Dikembangkan oleh **BagaskaraAP-Dev** (Bagaskara Amukti Palapa).

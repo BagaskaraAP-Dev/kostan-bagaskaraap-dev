@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Pengelola - Kostan BagaskaraAP-Dev</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background-color: #f8fafc;">
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="/" class="logo">
+        <div class="logo-icon">B</div>
+        <span>Kostan BagaskaraAP-Dev <span style="font-size: 0.85rem; font-weight: 500; color: var(--gray); background: var(--gray-light); padding: 2px 8px; border-radius: 4px;">Panel Pengelola</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#kamar">Unit Kamar</a>
+        <a href="#booking">Data Reservasi</a>
+        <a href="#keluhan">Laporan Kendala</a>
+        <a href="/" class="btn btn-outline" style="padding: 8px 16px;">Halaman Utama</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 30px; padding-bottom: 60px;">
+    
+    <!-- Summary Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card" style="border-left-color: var(--primary);">
+        <span class="stat-label">Total Unit Kamar</span>
+        <div class="stat-num" id="stat-total-rooms">0</div>
+        <span style="font-size: 0.8rem; color: var(--gray);">Kapasitas keseluruhan</span>
+      </div>
+      <div class="stat-card" style="border-left-color: var(--danger);">
+        <span class="stat-label">Kamar Terisi</span>
+        <div class="stat-num" id="stat-occupied-rooms" style="color: var(--danger);">0</div>
+        <span style="font-size: 0.8rem; color: var(--gray);">Jumlah penyewa aktif</span>
+      </div>
+      <div class="stat-card" style="border-left-color: var(--success);">
+        <span class="stat-label">Kamar Tersedia</span>
+        <div class="stat-num" id="stat-available-rooms" style="color: var(--success);">0</div>
+        <span style="font-size: 0.8rem; color: var(--gray);">Unit siap huni</span>
+      </div>
+      <div class="stat-card" style="border-left-color: #06b6d4;">
+        <span class="stat-label">Total Pembayaran Terkonfirmasi</span>
+        <div class="stat-num" id="stat-revenue" style="color: #0891b2; font-size: 1.6rem;">Rp 0</div>
+        <span style="font-size: 0.8rem; color: var(--gray);">Status lunas</span>
+      </div>
+      <div class="stat-card" style="border-left-color: var(--warning);">
+        <span class="stat-label">Kendala Aktif</span>
+        <div class="stat-num" id="stat-complaints" style="color: var(--warning);">0</div>
+        <span style="font-size: 0.8rem; color: var(--gray);">Menunggu penanganan</span>
+      </div>
+    </div>
+
+    <!-- Section 1: Manajemen Kamar -->
+    <div class="table-card" id="kamar">
+      <div class="table-header">
+        <div>
+          <h2 style="font-size: 1.25rem; font-weight: 700;">Manajemen Unit Kamar</h2>
+          <p style="font-size: 0.85rem; color: var(--gray);">Daftar unit kamar, tipe fasilitas, tarif per bulan, dan status keterisian.</p>
+        </div>
+        <button class="btn btn-primary" id="btn-add-room">+ Tambah Kamar</button>
+      </div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Nomor Kamar</th>
+              <th>Tipe</th>
+              <th>Tarif / Bulan</th>
+              <th>Fasilitas</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="rooms-table-body">
+            <tr><td colspan="6" style="text-align: center;">Memuat daftar unit kamar...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 2: Data Booking & Penghuni -->
+    <div class="table-card" id="booking">
+      <div class="table-header">
+        <div>
+          <h2 style="font-size: 1.25rem; font-weight: 700;">Data Reservasi dan Pembayaran</h2>
+          <p style="font-size: 0.85rem; color: var(--gray);">Daftar pemesanan kamar baru dan status verifikasi pembayaran sewa.</p>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nama Penyewa</th>
+              <th>Kontak WhatsApp</th>
+              <th>Unit Kamar</th>
+              <th>Mulai Menempati</th>
+              <th>Durasi</th>
+              <th>Total Tagihan</th>
+              <th>Status Pembayaran</th>
+            </tr>
+          </thead>
+          <tbody id="bookings-table-body">
+            <tr><td colspan="8" style="text-align: center;">Memuat riwayat pemesanan...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 3: Tiket Pengaduan & Keluhan -->
+    <div class="table-card" id="keluhan">
+      <div class="table-header">
+        <div>
+          <h2 style="font-size: 1.25rem; font-weight: 700;">Daftar Laporan Kendala Fasilitas</h2>
+          <p style="font-size: 0.85rem; color: var(--gray);">Laporan kerusakan fasilitas yang dikirim oleh penghuni kamar.</p>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Penghuni</th>
+              <th>Kamar</th>
+              <th>Kategori</th>
+              <th>Deskripsi Kendala</th>
+              <th>Tanggal Lapor</th>
+              <th>Status Penanganan</th>
+            </tr>
+          </thead>
+          <tbody id="complaints-table-body">
+            <tr><td colspan="7" style="text-align: center;">Memuat data laporan...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Modal Tambah Kamar -->
+  <div class="modal-overlay" id="add-room-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Tambah Unit Kamar Baru</h3>
+        <button class="modal-close" id="modal-room-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="add-room-form">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label">Nomor Kamar</label>
+              <input type="text" class="form-control" id="new-room-num" required placeholder="Contoh: Kamar 302">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tipe Kamar</label>
+              <select class="form-control" id="new-room-type">
+                <option value="Reguler">Reguler</option>
+                <option value="VIP">VIP</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Tarif Sewa (Rp / Bulan)</label>
+            <input type="number" class="form-control" id="new-room-price" required placeholder="Contoh: 1200000">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Daftar Fasilitas</label>
+            <input type="text" class="form-control" id="new-room-fac" required placeholder="Contoh: AC, Kamar Mandi Dalam, Kasur, Lemari, WiFi">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">URL Foto Unit (Opsional)</label>
+            <input type="text" class="form-control" id="new-room-img" placeholder="/img/default-room.svg">
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">Simpan Unit Kamar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

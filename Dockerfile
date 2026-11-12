@@ -1,9 +1,5 @@
-# -------------------------------------------------------------------
-# Multi-Stage Unified Production Dockerfile
-# Ideal for 1-click cloud deploy (Render, Railway, Fly.io, Cloud Run)
-# -------------------------------------------------------------------
-
-# Stage 1: Build React + Tailwind Frontend
+# Multi-stage production build for unified deployment
+# Stage 1: Build React and Tailwind Frontend
 FROM node:20-alpine AS frontend-builder
 WORKDIR /app/frontend
 COPY frontend/package*.json ./

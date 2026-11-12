@@ -73,12 +73,8 @@ async function startServer() {
   try {
     await getDB();
     app.listen(PORT, '0.0.0.0', () => {
-      console.log(`====================================================`);
-      console.log(` Kostan BagaskaraAP-Dev API v2.0 running`);
-      console.log(` Port: ${PORT}`);
-      console.log(` Health: http://localhost:${PORT}/api/health`);
-      console.log(` Uploads: ${uploadDir}`);
-      console.log(`====================================================`);
+      console.log(`Kostan BagaskaraAP-Dev API v2.0 listening on port ${PORT}`);
+      console.log(`Health check: http://localhost:${PORT}/api/health`);
     });
   } catch (err) {
     console.error('Failed to initialize server:', err);

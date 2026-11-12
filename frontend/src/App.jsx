@@ -7,7 +7,7 @@ import ComplaintSection from './components/ComplaintSection';
 import AdminDashboard from './components/AdminDashboard';
 import ImageLightboxModal from './components/ImageLightboxModal';
 import { fetchRooms } from './services/api';
-import { Search, Sparkles, Filter, CheckCircle2, AlertCircle, Heart, Layers, Container, Code2 } from 'lucide-react';
+import { Search, Filter, CheckCircle2, AlertCircle, Layers, Container, Code2 } from 'lucide-react';
 
 export default function App() {
   const [activeView, setActiveView] = useState('public'); // 'public' | 'admin'

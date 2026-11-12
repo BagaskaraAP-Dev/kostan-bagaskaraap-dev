@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Upload, CheckCircle, Image as ImageIcon, Calendar, Phone, User, Clock, AlertCircle } from 'lucide-react';
 import { formatRupiah, createBooking } from '../services/api';
 
@@ -15,6 +15,14 @@ export default function BookingModal({ room, onClose, onSuccess }) {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
 
   if (!room) return null;
 

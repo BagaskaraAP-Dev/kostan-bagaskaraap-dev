@@ -104,9 +104,6 @@ async function initTables(db) {
 }
 
 async function seedDefaultRooms(db) {
-  const countRes = await db.get('SELECT COUNT(*) as count FROM rooms');
-  if (countRes && countRes.count > 0) return;
-
   const defaultRooms = [
     {
       num: 'Kamar 101',
@@ -114,7 +111,7 @@ async function seedDefaultRooms(db) {
       price: 1500000,
       fac: 'AC, Kamar Mandi Dalam, Springbed King, Lemari 2 Pintu, Smart TV, WiFi 100Mbps',
       status: 'Tersedia',
-      img: '/uploads/rooms/kamar-101.svg'
+      img: '/uploads/rooms/kamar-101.jpg'
     },
     {
       num: 'Kamar 102',
@@ -122,7 +119,7 @@ async function seedDefaultRooms(db) {
       price: 1500000,
       fac: 'AC, Kamar Mandi Dalam, Water Heater, Meja Kerja Ergonomis, WiFi Cepat, Springbed',
       status: 'Terisi',
-      img: '/uploads/rooms/kamar-102.svg'
+      img: '/uploads/rooms/kamar-102.jpg'
     },
     {
       num: 'Kamar 201',
@@ -130,7 +127,7 @@ async function seedDefaultRooms(db) {
       price: 850000,
       fac: 'Kipas Angin Dinding, Kamar Mandi Dalam, Kasur Busa Empuk, Lemari, WiFi 50Mbps',
       status: 'Tersedia',
-      img: '/uploads/rooms/kamar-201.svg'
+      img: '/uploads/rooms/kamar-201.jpg'
     },
     {
       num: 'Kamar 202',
@@ -138,7 +135,7 @@ async function seedDefaultRooms(db) {
       price: 750000,
       fac: 'Kipas Angin, Kamar Mandi Luar Bersih, Kasur Single, Lemari, Akses Dapur Bersama',
       status: 'Tersedia',
-      img: '/uploads/rooms/kamar-202.svg'
+      img: '/uploads/rooms/kamar-202.jpg'
     },
     {
       num: 'Kamar 203',
@@ -146,7 +143,7 @@ async function seedDefaultRooms(db) {
       price: 850000,
       fac: 'Kipas Angin Dinding, Kamar Mandi Dalam, Kasur Springbed, Meja Belajar, WiFi',
       status: 'Terisi',
-      img: '/uploads/rooms/kamar-203.svg'
+      img: '/uploads/rooms/kamar-203.jpg'
     },
     {
       num: 'Kamar 301',
@@ -154,15 +151,24 @@ async function seedDefaultRooms(db) {
       price: 1650000,
       fac: 'AC Dingin 1PK, Balkon View Cantik, Kamar Mandi Dalam Water Heater, Kulkas Mini, Smart TV',
       status: 'Tersedia',
-      img: '/uploads/rooms/kamar-301.svg'
+      img: '/uploads/rooms/kamar-301.jpg'
     }
   ];
 
   for (const r of defaultRooms) {
-    await db.run(
-      `INSERT INTO rooms (room_number, type, price, facilities, status, image_url)
-       VALUES (?, ?, ?, ?, ?, ?)`,
-      [r.num, r.type, r.price, r.fac, r.status, r.img]
-    );
+    const existing = await db.get('SELECT id FROM rooms WHERE room_number = ?', [r.num]);
+    if (!existing) {
+      await db.run(
+        `INSERT INTO rooms (room_number, type, price, facilities, status, image_url)
+         VALUES (?, ?, ?, ?, ?, ?)`,
+        [r.num, r.type, r.price, r.fac, r.status, r.img]
+      );
+    } else {
+      // Update image to high-res realistic photo if currently on old svg
+      await db.run(
+        `UPDATE rooms SET image_url = ? WHERE room_number = ? AND (image_url LIKE '%.svg' OR image_url IS NULL)`,
+        [r.img, r.num]
+      );
+    }
   }
 }

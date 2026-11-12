@@ -1,18 +1,30 @@
 {
-  "name": "kostanku-fullstack",
-  "version": "1.0.0",
-  "description": "Sistem Manajemen & Booking Kost Modern Full-Stack",
-  "main": "server.js",
+  "name": "kostan-bagaskaraap-dev",
+  "version": "2.0.0",
+  "description": "Sistem Manajemen & Reservasi Kostan Modern Full-Stack (Docker, React, Tailwind, Node.js Express, SQLite, Image Extension)",
+  "main": "backend/src/server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "test": "node --check server.js"
+    "start": "node backend/src/server.js",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "build": "npm --prefix frontend run build",
+    "test": "node --check backend/src/server.js",
+    "docker:up": "docker compose up -d --build",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f"
   },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "sqlite": "^5.1.1",
-    "sqlite3": "^5.1.7"
-  }
+  "keywords": [
+    "kostan",
+    "docker",
+    "react",
+    "tailwind",
+    "express",
+    "sqlite",
+    "vibe-coding",
+    "antigravity"
+  ],
+  "author": "BagaskaraAP-Dev",
+  "license": "MIT"
 }

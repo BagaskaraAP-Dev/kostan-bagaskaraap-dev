@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad102" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="woodFloor" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#78350f"/>
+      <stop offset="100%" stop-color="#92400e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bgGrad102)"/>
+  <polygon points="0,380 800,380 800,500 0,500" fill="url(#woodFloor)"/>
+  
+  <!-- Modern Wall Art -->
+  <rect x="80" y="70" width="160" height="110" rx="4" fill="#334155" stroke="#94a3b8" stroke-width="3"/>
+  <circle cx="160" cy="125" r="30" fill="#06b6d4" opacity="0.8"/>
+  <polygon points="120,160 160,110 200,160" fill="#4f46e5" opacity="0.9"/>
+  
+  <!-- AC Unit -->
+  <rect x="520" y="60" width="200" height="55" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <line x1="535" y1="95" x2="705" y2="95" stroke="#94a3b8" stroke-width="3"/>
+  <circle cx="700" cy="75" r="3" fill="#10b981"/>
+  <text x="540" y="82" font-family="sans-serif" font-size="11" font-weight="700" fill="#64748b">AC INVERTER</text>
+
+  <!-- Water Heater Door (Ensuite Bathroom) -->
+  <rect x="300" y="140" width="130" height="240" rx="4" fill="#1e293b" stroke="#475569" stroke-width="3"/>
+  <circle cx="315" cy="260" r="5" fill="#f59e0b"/>
+  <text x="365" y="190" font-family="sans-serif" font-size="11" font-weight="600" fill="#94a3b8" text-anchor="middle">KAMAR MANDI</text>
+  <text x="365" y="210" font-family="sans-serif" font-size="10" font-weight="700" fill="#06b6d4" text-anchor="middle">WATER HEATER</text>
+
+  <!-- Bed -->
+  <rect x="500" y="260" width="250" height="150" rx="12" fill="#f1f5f9"/>
+  <rect x="500" y="230" width="250" height="40" rx="6" fill="#0369a1"/>
+  <rect x="520" y="245" width="85" height="35" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="635" y="245" width="85" height="35" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="500" y="320" width="250" height="90" rx="6" fill="#0284c7"/>
+
+  <!-- Badge Label -->
+  <rect x="40" y="420" width="220" height="44" rx="8" fill="#0284c7"/>
+  <text x="150" y="447" font-family="sans-serif" font-size="16" font-weight="800" fill="#ffffff" text-anchor="middle">KAMAR 102 - VIP</text>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad101" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#312e81"/>
+    </linearGradient>
+    <linearGradient id="bedGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e0e7ff"/>
+      <stop offset="100%" stop-color="#c7d2fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bgGrad101)"/>
+  
+  <!-- Floor -->
+  <polygon points="0,380 800,380 800,500 0,500" fill="#0f172a"/>
+  
+  <!-- Window -->
+  <rect x="80" y="80" width="180" height="220" rx="8" fill="#4338ca" stroke="#818cf8" stroke-width="4"/>
+  <line x1="170" y1="80" x2="170" y2="300" stroke="#818cf8" stroke-width="3"/>
+  <line x1="80" y1="190" x2="260" y2="190" stroke="#818cf8" stroke-width="3"/>
+  
+  <!-- AC Unit -->
+  <rect x="520" y="60" width="200" height="55" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <line x1="535" y1="95" x2="705" y2="95" stroke="#94a3b8" stroke-width="3"/>
+  <circle cx="700" cy="75" r="3" fill="#10b981"/>
+  <text x="540" y="82" font-family="sans-serif" font-size="11" font-weight="700" fill="#64748b">AC INVERTER</text>
+
+  <!-- Work Desk & Laptop -->
+  <rect x="340" y="270" width="160" height="110" rx="4" fill="#334155"/>
+  <rect x="375" y="235" width="80" height="50" rx="4" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+  <rect x="382" y="242" width="66" height="36" fill="#6366f1"/>
+  <rect x="365" y="285" width="100" height="5" rx="2" fill="#94a3b8"/>
+  
+  <!-- Bed -->
+  <rect x="520" y="260" width="230" height="150" rx="12" fill="url(#bedGrad)"/>
+  <rect x="520" y="230" width="230" height="40" rx="6" fill="#4338ca"/>
+  <!-- Pillows -->
+  <rect x="540" y="245" width="80" height="35" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="645" y="245" width="80" height="35" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="520" y="320" width="230" height="90" rx="6" fill="#6366f1"/>
+
+  <!-- Badge Label -->
+  <rect x="40" y="420" width="220" height="44" rx="8" fill="#4f46e5"/>
+  <text x="150" y="447" font-family="sans-serif" font-size="16" font-weight="800" fill="#ffffff" text-anchor="middle">KAMAR 101 - VIP</text>
+</svg>

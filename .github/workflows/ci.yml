@@ -1,4 +1,4 @@
-name: CI
+name: CI / Build & Test
 
 on:
   push:
@@ -7,21 +7,42 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-and-test:
+  backend-check:
+    name: Backend Syntax & Test
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
-        cache: 'npm'
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install backend dependencies
+        run: cd backend && npm ci
 
-    - name: Run automated integrity check
-      run: npm test
+      - name: Run backend integrity check
+        run: cd backend && npm test
+
+  frontend-build:
+    name: Frontend Vite & Tailwind Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        run: cd frontend && npm ci
+
+      - name: Build frontend production bundle
+        run: cd frontend && npm run build

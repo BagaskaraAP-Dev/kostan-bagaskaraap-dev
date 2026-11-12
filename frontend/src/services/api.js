@@ -171,3 +171,57 @@ export const fetchUploadedGallery = async (category = 'all') => {
   if (!res.ok) throw new Error(data.error || 'Gagal memuat galeri gambar');
   return data.data;
 };
+
+// Export Data Helpers
+export const exportBookingsToCSV = (bookings = []) => {
+  if (!bookings || bookings.length === 0) return;
+  const headers = ['ID', 'Nama Penyewa', 'No WhatsApp', 'Nomor Kamar', 'Tipe', 'Tanggal Check In', 'Durasi (Bulan)', 'Total Biaya', 'Status Pembayaran', 'Tanggal Dibuat'];
+  const rows = bookings.map(b => [
+    b.id,
+    `"${(b.tenant_name || '').replace(/"/g, '""')}"`,
+    `"${b.tenant_phone || ''}"`,
+    `"${b.room_number || ''}"`,
+    `"${b.room_type || ''}"`,
+    b.check_in_date || '',
+    b.duration_months || 1,
+    b.total_price || 0,
+    b.payment_status || '',
+    b.created_at || ''
+  ]);
+
+  const csvContent = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.setAttribute('href', url);
+  link.setAttribute('download', `laporan-reservasi-kost-${new Date().toISOString().split('T')[0]}.csv`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+};
+
+export const exportRoomsToCSV = (rooms = []) => {
+  if (!rooms || rooms.length === 0) return;
+  const headers = ['ID', 'Nomor Kamar', 'Tipe', 'Tarif Per Bulan', 'Status', 'Fasilitas'];
+  const rows = rooms.map(r => [
+    r.id,
+    `"${r.room_number || ''}"`,
+    `"${r.type || ''}"`,
+    r.price || 0,
+    r.status || '',
+    `"${(r.facilities || '').replace(/"/g, '""')}"`
+  ]);
+
+  const csvContent = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.setAttribute('href', url);
+  link.setAttribute('download', `daftar-unit-kamar-${new Date().toISOString().split('T')[0]}.csv`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+};
+

@@ -5,6 +5,7 @@ frontend/dist/
 backend/data/*.sqlite
 backend/data/*.sqlite-wal
 backend/data/*.sqlite-shm
+backend/data_test/
 .env
 .env.local
 *.log

@@ -14,8 +14,11 @@ import {
   deleteComplaint,
   fetchUploadedGallery,
   uploadImage,
-  formatRupiah
+  formatRupiah,
+  exportBookingsToCSV,
+  exportRoomsToCSV
 } from '../services/api';
+import ReceiptModal from './ReceiptModal';
 import {
   Building2,
   DollarSign,
@@ -34,7 +37,10 @@ import {
   Search,
   Filter,
   Check,
-  ExternalLink
+  ExternalLink,
+  FileSpreadsheet,
+  Printer,
+  MessageSquare
 } from 'lucide-react';
 
 export default function AdminDashboard({ onPreviewImage, notify }) {
@@ -45,6 +51,7 @@ export default function AdminDashboard({ onPreviewImage, notify }) {
   const [complaints, setComplaints] = useState([]);
   const [galleryImages, setGalleryImages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [selectedBookingForReceipt, setSelectedBookingForReceipt] = useState(null);
 
   // Room modal state
   const [isRoomModalOpen, setIsRoomModalOpen] = useState(false);
@@ -462,6 +469,16 @@ export default function AdminDashboard({ onPreviewImage, notify }) {
       {/* TAB 2: ROOMS MANAGEMENT */}
       {activeTab === 'rooms' && (
         <div className="py-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Total {rooms.length} Unit Kamar</span>
+            <button
+              onClick={() => exportRoomsToCSV(rooms)}
+              className="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-semibold flex items-center gap-1.5 transition-colors"
+            >
+              <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-600" />
+              <span>Ekspor CSV</span>
+            </button>
+          </div>
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
@@ -547,6 +564,16 @@ export default function AdminDashboard({ onPreviewImage, notify }) {
       {/* TAB 3: BOOKINGS MANAGEMENT WITH PAYMENT PROOFS */}
       {activeTab === 'bookings' && (
         <div className="py-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Total {bookings.length} Reservasi</span>
+            <button
+              onClick={() => exportBookingsToCSV(bookings)}
+              className="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-semibold flex items-center gap-1.5 transition-colors"
+            >
+              <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-600" />
+              <span>Ekspor CSV</span>
+            </button>
+          </div>
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
@@ -623,13 +650,22 @@ export default function AdminDashboard({ onPreviewImage, notify }) {
                           </select>
                         </td>
                         <td className="px-6 py-4 text-right">
-                          <button
-                            onClick={() => handleDeleteBooking(b.id)}
-                            className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition"
-                            title="Hapus Reservasi"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
+                          <div className="flex items-center justify-end gap-1">
+                            <button
+                              onClick={() => setSelectedBookingForReceipt(b)}
+                              className="p-1.5 text-slate-500 hover:text-indigo-700 hover:bg-indigo-50 rounded-lg transition-colors"
+                              title="Buka / Cetak Kuitansi"
+                            >
+                              <Printer className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={() => handleDeleteBooking(b.id)}
+                              className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                              title="Hapus Reservasi"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))
@@ -920,6 +956,13 @@ export default function AdminDashboard({ onPreviewImage, notify }) {
             </form>
           </div>
         </div>
+      )}
+      {/* RECEIPT MODAL */}
+      {selectedBookingForReceipt && (
+        <ReceiptModal
+          booking={selectedBookingForReceipt}
+          onClose={() => setSelectedBookingForReceipt(null)}
+        />
       )}
     </div>
   );
